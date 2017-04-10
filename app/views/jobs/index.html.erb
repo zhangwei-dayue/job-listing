@@ -1,11 +1,11 @@
 <div class="col-md-12">
-  <div class="dropdown pull-right  ">
-    <a href="#" class="dropdown-toggle btn-sm btn-primary " data-toggle="dropdown" style="padding: 10px">
+  <div class="dropdown clearfix pull-right  ">
+    <button class="dropdown-toggle btn btn-primary " type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       排序
 
-      <b class="caret "></b>
-    </a>
-    <ul class="dropdown-menu ">
+      <span class="caret "></span>
+    </button>
+    <ul class="dropdown-menu " aria-labelledby="dropdownMenuDivider">
       <li><%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound"))%></li>
       <li><%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound"))%></li>
       <li><%= link_to("按照发布时间排序", )%></li>
@@ -33,7 +33,7 @@
           <td><%= job.wage_lower_bound %></td>
           <td><%= job.contact_email %></td>
           <td><%= job.created_at %></td>
-          
+
           <td>
               <%= link_to("编辑", edit_job_path(job), class: "btn btn-sm btn-default")%>
               <%= link_to("删除", job_path(job), class: "btn btn-sm btn-default", method: :delete, data: { confirm: "你确定删除该职位吗？"})%>
