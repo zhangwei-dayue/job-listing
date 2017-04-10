@@ -16,6 +16,7 @@ class Admin::JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
+    @job.user = current_user
     if @job.save
       redirect_to admin_jobs_path
     else
@@ -56,7 +57,7 @@ class Admin::JobsController < ApplicationController
     redirect_to :back
   end
 
-private
+  private
 
   def job_params
     params.require(:job).permit(:title, :description, :contact_email, :wage_upper_bound, :wage_lower_bound, :is_hidden)
