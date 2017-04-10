@@ -34,12 +34,6 @@ class JobsController < ApplicationController
   end
 
 
-  def require_is_admin
-    if !current_user.admin?
-      flash[:alert] = "你不是公司HR，没有权限进行相关操作！"
-      redirect_to jobs_path
-    end
-  end
 
 
 

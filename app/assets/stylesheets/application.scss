@@ -12,9 +12,31 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+ html {
+   position: relative;
+   min-height: 100%;
+ }
+
+ body {
+   margin-bottom: 150px;
+ }
+
+ .footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 150px;
+   text-align: center;
+ }
+
+ .contain-1{
+   margin-top: 50px;
+   width: 100%;
+ }

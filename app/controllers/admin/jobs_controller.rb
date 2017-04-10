@@ -10,30 +10,55 @@ class Admin::JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  def new
+    @job = Job.new
+  end
+
+  def create
+    @job = Job.new(job_params)
+    if @job.save
+      redirect_to admin_jobs_path
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @job = Job.find(params[:id])
+  end
+
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      redirect_to admin_jobs_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @job = Job.find(params[:id])
     @job.destroy
     redirect_to admin_jobs_path, alert: "你已经成功删除职位！"
   end
 
-  def require_is_admin
-    if !current_user.admin?
-      flash[:alert] = "你不是公司HR，没有权限进行相关操作！"
-      redirect_to jobs_path
-    end
-  end
+
 
   def publish
     @job = Job.find(params[:id])
-    @job.is_hidden = false
-    @job.save
+    @job.publish!
     redirect_to :back
   end
 
   def hide
     @job = Job.find(params[:id])
-    @job.is_hidden = true
-    @job.save
+    @job.hide!
     redirect_to :back
+  end
+
+private
+
+  def job_params
+    params.require(:job).permit(:title, :description, :contact_email, :wage_upper_bound, :wage_lower_bound, :is_hidden)
   end
 end

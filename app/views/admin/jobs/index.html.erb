@@ -1,4 +1,7 @@
 <div class="col-md-12">
+  <div class="pull-right">
+    <%= link_to("添加新职位", new_admin_job_path, :class => "btn btn-primary") %>
+  </div>
   <h2 class="text-center">我发布的职位</h2>
   <table class="table">
     <thead>
@@ -14,16 +17,12 @@
         <tr>
           <td>#</td>
           <td>
-            <% if job.is_hidden %>
-                <i class="fa fa-lock" aria-hidden="true"></i>
-              <% else %>
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              <% end %>
+              <%= render_job_status(job) %>
               <%= link_to(job.title, admin_job_path(job))%></td>
           <td><%= job.description%></td>
-          <td><%= job.updated_at%></td>
+          <td><%= job.created_at%></td>
           <td>
-              <%= link_to("编辑", edit_job_path(job), class: "btn btn-sm btn-default")%>
+              <%= link_to("编辑", edit_admin_job_path(job), class: "btn btn-sm btn-default")%>
               <%= link_to("删除", admin_job_path(job), class: "btn btn-sm btn-default", method: :delete, data: { confirm: "你确定删除该职位吗？"})%>
               <% if job.is_hidden %>
                 <%= link_to("公开", publish_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default")%>
