@@ -6,11 +6,11 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :async => true %>
     <link rel="shortcut icon" href="/images/favicon.ico">
   </head>
 
-  <body>
+  <body id="<%= "#{controller_name}-#{action_name}"%>">
     <div class="container-fluid">
       <div class="row">
         <%= render "common/navbar" %>
